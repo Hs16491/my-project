@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Login
+from .forms import LoginForms
 #from django.http import HttpResponse
 # Create your views here.
 
@@ -17,10 +18,19 @@ def about(request):
     #return HttpResponse('about page') 
 
 def login(request):
-    username = request.POST.get('username')
-    password = request.POST.get('password')
-    print(f"Username: {username}, Password: {password}")
-    data = Login.objects.create(username=username, password=password)
-    data.save()
+    if request.method == 'POST':
+        dataform = LoginForms(request.POST)
+        if dataform.is_valid():
+            dataform.save()
+        else:
+            form = LoginForms()
+    
+    
+    
+    #if request.method == 'POST':
+        #username = request.POST.get('username')
+        #password = request.POST.get('password')
+        #data = Login(username=username, password=password)
+        #data.save()
 
-    return render(request, 'pages/login.html')
+    return render(request, 'pages/login.html', {'lform': LoginForms()})

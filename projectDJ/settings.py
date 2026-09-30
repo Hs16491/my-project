@@ -30,8 +30,10 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    #'grappelli',
     'products.apps.ProductsConfig',
     'pages.apps.PagesConfig',
+    #'products.apps.SuitConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
